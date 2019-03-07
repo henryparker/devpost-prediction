@@ -35,29 +35,18 @@ export default class PredictionForm extends Component{
 							...values,
 							Tags: values.Tags.split(",").map(tag => tag.toLowerCase().trim())
 						};
-<<<<<<< HEAD
-						try{
-							let res = await axios.post('/prediction',submission);
-							console.log(submission);
-							console.log(res);
-						}catch(e){
-							console.log(e)
-						}
-						
-=======
 						console.log('submitted');
 						console.log(submission);
 						axios.post('/prediction', submission)
 						.then((res) => {
 							console.log('received');
 							this.setState((state, props) => {
-								return {openModal: true, winProbability: res.percent};
+								return {openModal: true, winProbability: res.data.percent};
 							});
 						})
 						.catch((err) => {
 							console.log(err);
 						})
->>>>>>> 6279b5237689b5a9c03688cba8f6230a9e29a5e0
 					}}
 					render={props => (
 						<div style={{ padding:"10px"}}>

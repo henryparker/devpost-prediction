@@ -17,7 +17,7 @@ app.post('/prediction', async(req,res) => {
     req.body.Title,req.body.ShortPitch,req.body.Description,req.body.Tags]);
 	console.log('process spawned');
     process.stdout.on('data', data=>{
-        console.log(data.toString());
+       res.send({percent:data.toString()});
     })
 
 })
