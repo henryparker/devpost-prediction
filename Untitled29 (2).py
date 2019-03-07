@@ -7,7 +7,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-df = pd.read_csv('./Desktop/test.csv')
+df = pd.read_csv('./test.csv')
 
 df.fillna(' ')
 
@@ -53,7 +53,7 @@ print('Accuracy of Lasso classifier on training set: {:.2f}'
 print('Accuracy of Lasso classifier on test set: {:.2f}'
      .format(logreg.score(X_test, y_test)))
 
-
+                            
 # In[85]:
 
 
