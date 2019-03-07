@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
     "formik": "^1.5.1",
     "react": "^16.8.4",
@@ -11,6 +12,8 @@
     "request-promise": "^4.2.4",
     "semantic-ui-react": "^0.85.0"
   },
+    "proxy" : "http://localhost:5000",
+  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

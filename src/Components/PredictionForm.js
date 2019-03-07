@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import {Input, Button, Header,Form,Checkbox, Container} from 'semantic-ui-react';
 import {Formik} from 'formik';
-
+import axios from 'axios';
 export default class PredictionForm extends Component{
 
     constructor(props){
@@ -25,12 +25,19 @@ export default class PredictionForm extends Component{
 						Description: "", 
 						Tags: "",
 					}}
-					onSubmit={(values) => {
+					onSubmit={async (values) => {
 						let submission = {
 							...values,
 							Tags: values.Tags.split(",").map(tag => tag.trim())
 						};
-						console.log(submission);
+						try{
+							let res = await axios.post('/prediction',submission);
+							console.log(submission);
+							console.log(res);
+						}catch(e){
+							console.log(e)
+						}
+						
 					}}
 					render={props => (
 						<div style={{ padding:"10px"}}>
