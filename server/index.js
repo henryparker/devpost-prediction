@@ -6,20 +6,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-let Port = 5000 || process.env.Port;
+let Port = 3000 || process.env.Port;
 
 app.post('/prediction', async(req,res) => {
 
     console.log(req.body);
 
     let spawn = require("child_process").spawn; 
+<<<<<<< HEAD
     let process = spawn('python3' ,["./executeModel.py",
+=======
+    let process = spawn('python',["./executeModel.py",
+>>>>>>> 9871095ec650bf421f086093ac7190844b89e0bb
     req.body.Title,req.body.ShortPitch,req.body.Description,req.body.Tags]);
-
+	console.log('process spawned');
     process.stdout.on('data', data=>{
-        console.log(data);
-    }
-    )
+        res.send(data);
+    })
 
 })
 
