@@ -13,11 +13,7 @@ app.post('/prediction', async(req,res) => {
     console.log(req.body);
 
     let spawn = require("child_process").spawn; 
-<<<<<<< HEAD
-    let process = spawn('python3' ,["./executeModel.py",
-=======
-    let process = spawn('python',["./executeModel.py",
->>>>>>> 9871095ec650bf421f086093ac7190844b89e0bb
+    let process = spawn('python' ,["./executeModel.py",
     req.body.Title,req.body.ShortPitch,req.body.Description,req.body.Tags]);
 	console.log('process spawned');
     process.stdout.on('data', data=>{

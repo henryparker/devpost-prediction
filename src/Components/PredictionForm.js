@@ -30,7 +30,7 @@ export default class PredictionForm extends Component{
 						Description: "", 
 						Tags: "",
 					}}
-					onSubmit={async (values) => {
+					onSubmit={(values) => {
 						let submission = {
 							...values,
 							Tags: values.Tags.split(",").map(tag => tag.toLowerCase().trim())
