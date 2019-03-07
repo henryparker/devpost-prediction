@@ -1,16 +1,20 @@
+/* eslint-disable no-unused-expressions */
 
 import React, {Component} from 'react';
 import {Input, Button, Header,Form,Checkbox, Container} from 'semantic-ui-react';
+import SubmitModal from './SubmitModal';
 import {Formik} from 'formik';
+import 'semantic-ui-css/semantic.min.css';
 
 export default class PredictionForm extends Component{
 
     constructor(props){
       super(props);
       this.state = {
-        winProbability: null
+		winProbability: null,
+		openModal: false
       }
-    }
+	}
     render(){
 
 
@@ -28,9 +32,16 @@ export default class PredictionForm extends Component{
 					onSubmit={(values) => {
 						let submission = {
 							...values,
-							Tags: values.Tags.split(",").map(tag => tag.trim())
+							Tags: values.Tags.split(",").map(tag => tag.toLowerCase().trim())
 						};
 						console.log(submission);
+						const displayResults = (percent) => this.setState((state, props) => {
+							return {openModal: true, winProbability: percent};
+						});
+
+						// use displayResults as callback
+						displayResults(0.14); // 14% chance to win
+						console.log("is open " + this.state.openModal);
 					}}
 					render={props => (
 						<div style={{ padding:"10px"}}>
@@ -47,7 +58,7 @@ export default class PredictionForm extends Component{
 								<Form.Group widths='equal'>
 									<Form.Input
 										fluid label='Short Pitch' 
-										placeholder='Short Pitch' 
+										placeholder='Short pitch' 
 										onChange={props.handleChange}
 										name="ShortPitch"
 										values={props.values.ShortPitch}
@@ -55,7 +66,7 @@ export default class PredictionForm extends Component{
 								</Form.Group>
 								<Form.TextArea
 									label='Description'
-									placeholder='Tell us more about you...' 
+									placeholder='Tell us more about your project...' 
 									onChange={props.handleChange}
 									name="Description"
 									values={props.values.Description}
@@ -74,14 +85,14 @@ export default class PredictionForm extends Component{
 						</div>
 					)}
 				/>
-          		{
-					(() => {
-						if (this.state.winProbability)
-							return (<Header as="h3">Your winning Probability is {this.state.winProbability}</Header>);
-						else
-							return (<span></span>);
-					})()
-				}
+          		<SubmitModal
+					open={this.state.openModal}
+					winProbability={this.state.winProbability}
+					closer={() => this.setState((state, props) => {
+						return {openModal: false}
+					})}
+				>
+				</SubmitModal>
         	</Container>
         </div>
         );
