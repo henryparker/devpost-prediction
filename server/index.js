@@ -19,17 +19,20 @@ app.post('/prediction', async(req,res) => {
     req.body.Title,req.body.ShortPitch,req.body.Description,req.body.Tags]);
 	console.log('process spawned');
     process.stdout.on('data', data => {
-    // console.log(data);
+        console.log("hi");
        res.send({percent:data.toString()});
     })
 	// res.send(Math.random());
-})
+});
 
 
     // Exprees will serve up production assets
   
     // Express serve up index.html file if it doesn't recognize route
 const path = require('path');
+
+app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
+
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
 });

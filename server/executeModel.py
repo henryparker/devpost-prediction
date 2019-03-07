@@ -13,7 +13,6 @@ ShortPitch = sys.argv[2]
 Description = sys.argv[3]
 Tag = sys.argv[4]
 
-
 Total = Title +' '+ ShortPitch + ' ' + Description + ' ' + ' '.join(Tag)
 
 from sklearn.feature_extraction.text import TfidfVectorizer
