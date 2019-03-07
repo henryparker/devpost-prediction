@@ -11,6 +11,11 @@
   "cacheDirectories": [
     "node_modules",
     "react-ui/node_modules"
+  ],"keywords": [
+    "node",
+    "heroku",
+    "create-react-app",
+    "react"
   ],
   "author": "",
   "license": "ISC",
