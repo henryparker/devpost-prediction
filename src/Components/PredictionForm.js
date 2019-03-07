@@ -35,16 +35,6 @@ export default class PredictionForm extends Component{
 							...values,
 							Tags: values.Tags.split(",").map(tag => tag.toLowerCase().trim())
 						};
-<<<<<<< HEAD
-						try{
-							let res = await axios.post('/prediction',submission);
-							console.log(submission);
-							console.log(res);
-						}catch(e){
-							console.log(e)
-						}
-						
-=======
 						console.log('submitted');
 						console.log(submission);
 						axios.post('/prediction', submission)
@@ -57,7 +47,6 @@ export default class PredictionForm extends Component{
 						.catch((err) => {
 							console.log(err);
 						})
->>>>>>> 9871095ec650bf421f086093ac7190844b89e0bb
 					}}
 					render={props => (
 						<div style={{ padding:"10px"}}>
