@@ -9,8 +9,18 @@ app.use(bodyParser.json());
 let Port = 5000 || process.env.Port;
 
 app.post('/prediction', async(req,res) => {
+
     console.log(req.body);
-    res.send("it's on prediction --post");
+
+    let spawn = require("child_process").spawn; 
+    let process = spawn('python',["./executeModel.py",
+    req.body.Title,req.body.ShortPitch,req.body.Description,req.body.Tags]);
+
+    process.stdout.on('data', data=>{
+        res.send(data);
+    }
+    )
+
 })
 
 app.get('/',async(req,res)=>{
