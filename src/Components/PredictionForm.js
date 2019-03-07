@@ -16,8 +16,8 @@ export default class PredictionForm extends Component{
 
         return(
           <div style={{marginTop:'10%'}}>
-          <Container>
-
+          <Container style={{backgroundColor:"white", borderRadius:"25px",boxShadow: "2px 2px 5px #fc6767", padding:"10px"}}>
+          <Header as="h1">Hackathon Predictor</Header>
           <Formik 
           initialValues={{
           Title:"PLEASE PUT IN TITLE", 
@@ -28,7 +28,8 @@ export default class PredictionForm extends Component{
             console.log(values);
       }}
       render={props => (
-        <div>
+        <div style={{ padding:"10px"
+        }}>
         <Form onSubmit={props.handleSubmit}>
           <Form.Group widths='equal'>
             <Form.Input fluid label='Title' placeholder='Title' 
@@ -41,7 +42,7 @@ export default class PredictionForm extends Component{
           </Form.Group>
           <Form.TextArea label='Description' placeholder='Tell us more about you...' 
             onChange={props.handleChange} name="Description" values={props.values.Description}/>
-          <Form.Button type="submit" >Submit</Form.Button>
+          <Form.Button color="blue" type="submit" >Submit</Form.Button>
         </Form>
         </div>
       )}
