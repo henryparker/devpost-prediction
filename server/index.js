@@ -6,7 +6,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-let Port = process.env.Port || 5000;
+let Port = process.env.PORT || 5000;
 
 app.post('/prediction', async(req,res) => {
 
