@@ -23,9 +23,9 @@ app.post('/prediction', async(req,res) => {
 	// res.send(Math.random());
 })
 
-app.get('/',async(req,res)=>{
-    res.send("it's on");
-})
+// app.get('/',async(req,res)=>{
+//     res.send("it's on");
+// })
 
 app.listen(Port);
 
