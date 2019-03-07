@@ -5,11 +5,8 @@ import {Input, Button, Header,Form,Checkbox, Container} from 'semantic-ui-react'
 import SubmitModal from './SubmitModal';
 import {Formik} from 'formik';
 import axios from 'axios';
-<<<<<<< HEAD
 import 'semantic-ui-css/semantic.min.css';
 
-=======
->>>>>>> 5ea911747399d8eda8f1a0da67bd0a9e48090d2c
 export default class PredictionForm extends Component{
 
     constructor(props){
@@ -38,20 +35,6 @@ export default class PredictionForm extends Component{
 							...values,
 							Tags: values.Tags.split(",").map(tag => tag.toLowerCase().trim())
 						};
-<<<<<<< HEAD
-						console.log('submitted');
-						console.log(submission);
-						axios.post('/prediction', submission)
-						.then((res) => {
-							console.log('received');
-							this.setState((state, props) => {
-								return {openModal: true, winProbability: res.percent};
-							});
-						})
-						.catch((err) => {
-							console.log(err);
-						})
-=======
 						try{
 							let res = await axios.post('/prediction',submission);
 							console.log(submission);
@@ -60,7 +43,6 @@ export default class PredictionForm extends Component{
 							console.log(e)
 						}
 						
->>>>>>> 5ea911747399d8eda8f1a0da67bd0a9e48090d2c
 					}}
 					render={props => (
 						<div style={{ padding:"10px"}}>
