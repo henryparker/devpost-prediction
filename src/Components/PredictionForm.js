@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import {Input, Button, Header,Form,Checkbox, Container} from 'semantic-ui-react';
 import SubmitModal from './SubmitModal';
 import {Formik} from 'formik';
+import axios from 'axios';
 import 'semantic-ui-css/semantic.min.css';
 
 export default class PredictionForm extends Component{
@@ -34,14 +35,18 @@ export default class PredictionForm extends Component{
 							...values,
 							Tags: values.Tags.split(",").map(tag => tag.toLowerCase().trim())
 						};
+						console.log('submitted');
 						console.log(submission);
-						const displayResults = (percent) => this.setState((state, props) => {
-							return {openModal: true, winProbability: percent};
-						});
-
-						// use displayResults as callback
-						displayResults(0.14); // 14% chance to win
-						console.log("is open " + this.state.openModal);
+						axios.post('/prediction', submission)
+						.then((res) => {
+							console.log('received');
+							this.setState((state, props) => {
+								return {openModal: true, winProbability: res.percent};
+							});
+						})
+						.catch((err) => {
+							console.log(err);
+						})
 					}}
 					render={props => (
 						<div style={{ padding:"10px"}}>
