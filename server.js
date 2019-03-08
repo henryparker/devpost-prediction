@@ -7,7 +7,7 @@ const { GoogleToken } = require('gtoken');
 const gtoken = new GoogleToken({
 	//keyFile: 'hackathon-predictor-256b76da24d9.json',
 	scope: ['https://www.googleapis.com/auth/cloud-platform'],
-	key: process.env.SERVICE_KEY,
+	key: process.env.SERVICE_KEY.replace('\\n', '\n'),
 	email: process.env.SERVICE_EMAIL
 });
 
@@ -26,7 +26,6 @@ app.post('/prediction', async(req,res) => {
 		+ ' ' + req.body.Tags.join();
 
 	console.log('getting token');
-	console.log(process.env.SERVICE_KEY);
 	const token = await gtoken.getToken();
 
 	let config = {
