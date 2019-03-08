@@ -5,7 +5,8 @@ const path = require('path');
 const axios = require('axios');
 const { GoogleToken } = require('gtoken');
 const gtoken = new GoogleToken({
-	keyFile: 'hackathon-predictor-256b76da24d9.json',
+	key: process.env.SERVICE_KEY,
+	email: process.env.SERVICE_EMAIL,
 	scope: ['https://www.googleapis.com/auth/cloud-platform']
 });
 
