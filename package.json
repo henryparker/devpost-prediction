@@ -11,7 +11,8 @@
   "cacheDirectories": [
     "node_modules",
     "react-ui/node_modules"
-  ],"keywords": [
+  ],
+  "keywords": [
     "node",
     "heroku",
     "create-react-app",
