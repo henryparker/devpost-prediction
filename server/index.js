@@ -14,12 +14,12 @@ app.post('/prediction', async(req,res) => {
 
     console.log(req.body);
 
-    let spawn = require("child_process").spawn; 
+    // let spawn = require("child_process").spawn; 
     let Total = req.body.Title +' '+ req.body.ShortPitch + ' ' + 
     req.body.Description + ' ' + req.body.Tags.join()
-    axios.post('put the api here',{data:[Total]}).then(result=>{
-        res.send(result[0][1]);
-    })
+    axios.post('put the api here',{instances:[[Total]]}).then(result=>{
+        res.send(result.predictions[0][1]);
+    }).catch(err=>console.log(err))
     // let process = spawn('python3' ,["./executeModel.py",
     // req.body.Title,req.body.ShortPitch,req.body.Description,req.body.Tags]);
 
