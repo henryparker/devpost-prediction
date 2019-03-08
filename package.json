@@ -4,8 +4,10 @@
 	"main": "server.js",
 	"license": "MIT",
 	"dependencies": {
+		"axios": "^0.18.0",
 		"body-parser": "^1.18.2",
-		"express": "^4.16.2"
+		"express": "^4.16.2",
+		"gtoken": "^2.3.2"
 	},
 	"scripts": {
 		"start": "node server.js",

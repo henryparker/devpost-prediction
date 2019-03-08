@@ -6,7 +6,7 @@ const BASE_ADV = 0.07;
 
 const advantage = (percent) => {
 	let advStr = "";
-	advStr += percent / BASE_ADV;
+	advStr += Number(percent / BASE_ADV).toFixed(2);
 	advStr += "x";
 	return advStr;
 }
