@@ -5,8 +5,10 @@ const path = require('path');
 const axios = require('axios');
 const { GoogleToken } = require('gtoken');
 const gtoken = new GoogleToken({
-	keyFile: 'hackathon-predictor-256b76da24d9.json',
-	scope: ['https://www.googleapis.com/auth/cloud-platform']
+	//keyFile: 'hackathon-predictor-256b76da24d9.json',
+	scope: ['https://www.googleapis.com/auth/cloud-platform'],
+	key: process.env.SERVICE_KEY,
+	email: process.env.SERVICE_EMAIL
 });
 
 app.use(bodyParser.urlencoded({ extended: false }));
