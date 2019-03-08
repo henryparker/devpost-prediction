@@ -26,7 +26,7 @@ app.post('/prediction', async(req,res) => {
 		+ ' ' + req.body.Tags.join();
 
 	console.log('getting token');
-	
+	console.log(process.env.SERVICE_KEY);
 	const token = await gtoken.getToken();
 
 	let config = {
