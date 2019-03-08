@@ -13,13 +13,22 @@ let Port = process.env.PORT || 5000;
 app.post('/prediction', async(req,res) => {
 
     console.log(req.body);
-
+    let config = {headers:{Authorization:"Bearer ya29.GlvGBhm4-o_IzPwIuqDWb_V7jHzs3zp8qLMCSvKd3-Ckiqb8JVyZifYGc3Z6Irn_6u1LBinntMfD5SZWrLax_YTN8Y8oU1IOF_gP4PhsaiBqOD8UzG01cf2t8zV_" }}
     // let spawn = require("child_process").spawn; 
     let Total = req.body.Title +' '+ req.body.ShortPitch + ' ' + 
     req.body.Description + ' ' + req.body.Tags.join()
-    axios.post('put the api here',{instances:[[Total]]}).then(result=>{
-        res.send(result.predictions[0][1]);
+    axios.post('https://ml.googleapis.com/v1/projects/hackathon-predictor/models/hackWinChance/versions/hackWinChance_v2:predict',
+    {instances:[Total]}, 
+    config).then(result=>{
+        // console.log(result);
+        res.send({percent:result.data.predictions[0][1]});
     }).catch(err=>console.log(err))
+    // axios.post('https://webhook.site/19bc6020-d84d-4c70-8201-2e1bd5d31660',
+    // {instances:[[Total]]}).then(result=>{
+    //     console.log(result);
+    //     // res.send(result.predictions[0][1]);
+    // }).catch(err=>console.log(err))
+    
     // let process = spawn('python3' ,["./executeModel.py",
     // req.body.Title,req.body.ShortPitch,req.body.Description,req.body.Tags]);
 
