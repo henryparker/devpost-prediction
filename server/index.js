@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-
+const axios = require('axios');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -15,13 +15,19 @@ app.post('/prediction', async(req,res) => {
     console.log(req.body);
 
     let spawn = require("child_process").spawn; 
-    let process = spawn('python3' ,["./executeModel.py",
-    req.body.Title,req.body.ShortPitch,req.body.Description,req.body.Tags]);
-	console.log('process spawned');
-    process.stdout.on('data', data => {
-        console.log("hi");
-       res.send({percent:data.toString()});
+    let Total = req.body.Title +' '+ req.body.ShortPitch + ' ' + 
+    req.body.Description + ' ' + req.body.Tags.join()
+    axios.post('put the api here',{data:[Total]}).then(result=>{
+        res.send(result[0][1]);
     })
+    // let process = spawn('python3' ,["./executeModel.py",
+    // req.body.Title,req.body.ShortPitch,req.body.Description,req.body.Tags]);
+
+	// console.log('process spawned');
+    // process.stdout.on('data', data => {
+    //     console.log("hi");
+    //    res.send({percent:data.toString()});
+    // })
 	// res.send(Math.random());
 });
 
